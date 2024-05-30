@@ -3,6 +3,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import { ProjectType } from "../types/types";
 import { useNavigate } from "react-router-dom";
+import ForwardIcon from '@mui/icons-material/Forward';
 
 interface ProjectProps {
   projects: ProjectType;
@@ -41,6 +42,10 @@ const Projects = ({ projects, deleteProject, toggleStatus }: ProjectProps) => {
         </button>
         <button onClick={handleEdit}>
           <EditIcon />
+        </button>
+        <button className="ml-12">
+          GO INTO
+          <ForwardIcon/>
         </button>
       </td>
     </tr>

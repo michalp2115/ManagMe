@@ -5,3 +5,9 @@ export type ProjectType = {
     status?: boolean
 
 }
+
+export type UserType = {
+    id: string;
+    name: string;
+    surname: string;
+}

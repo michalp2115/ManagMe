@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useUser } from "../context/UserContext";
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 const Navbar = () => {
   const { user, setUser } = useUser();
@@ -20,6 +21,7 @@ const Navbar = () => {
             <span>
               Welcome, {user.name} {user.surname}
             </span>
+            <Link to ="/details"><AccountCircleIcon/></Link>
             <button onClick={handleLogout} className="text-red-500">
               Logout
             </button>

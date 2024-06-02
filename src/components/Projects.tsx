@@ -1,9 +1,9 @@
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
+import ForwardIcon from '@mui/icons-material/Forward';
 import { ProjectType } from "../types/types";
 import { useNavigate } from "react-router-dom";
-import ForwardIcon from '@mui/icons-material/Forward';
 
 interface ProjectProps {
   projects: ProjectType;
@@ -28,6 +28,10 @@ const Projects = ({ projects, deleteProject, toggleStatus }: ProjectProps) => {
     navigate(`/edit/${projects.id}`);
   };
 
+  const handleGoInto = () => {
+    navigate(`/projects/${projects.id}/user-stories`);
+  };
+
   return (
     <tr className={`border border-gray-300 ${projects.status ? 'line-through' : ''}`}>
       <td className="border border-gray-300 px-4 py-2">{projects.id}</td>
@@ -43,7 +47,7 @@ const Projects = ({ projects, deleteProject, toggleStatus }: ProjectProps) => {
         <button onClick={handleEdit}>
           <EditIcon />
         </button>
-        <button className="ml-12">
+        <button className="ml-12" onClick={handleGoInto}>
           GO INTO
           <ForwardIcon/>
         </button>

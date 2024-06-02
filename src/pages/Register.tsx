@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "../db/Firebase";
 import { useNavigate } from "react-router-dom";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, setDoc, doc } from "firebase/firestore";
 import { useUser } from "../context/UserContext";
 
 const Register = () => {
@@ -22,7 +22,7 @@ const Register = () => {
       const user = userCredential.user;
 
 
-      await addDoc(collection(db, "users"), {
+      await setDoc(doc(db, "users", user.uid), {
         uid: user.uid,
         email: user.email,
         name: name,
@@ -33,7 +33,8 @@ const Register = () => {
       const loggedUser = {
         id: user.uid,
         name: name,
-        surname: surname
+        surname: surname,
+        email: email
       };
       console.log("User logged in: ", loggedUser)
       setUser(loggedUser); 

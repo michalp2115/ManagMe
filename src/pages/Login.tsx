@@ -22,25 +22,19 @@ const Login = () => {
   
       // Fetch user information from Firestore
       const userDocRef = doc(db, "users", user.uid);
-      console.log(userDocRef)
       const userSnap = await getDoc(userDocRef);
       console.log("User snapshot:", userSnap.exists() ? userSnap.data() : "User not found");
       
-      if (userSnap) {
+      if (userSnap.exists()) {
         const userData = userSnap.data();
-        if(userData){
-          const loggedUser = {
-            id: user.uid,
-            name: userData.name,
-            surname: userData.surname
-          }; // <-- Closing curly brace added here
-          setUser(loggedUser); // Set user context
-          navigate("/"); // Navigate to the home page
-        }
-      
-      
-        
-  
+        const loggedUser = {
+          id: user.uid,
+          name: userData.name,
+          surname: userData.surname,
+          email: userData.email // Make sure to include email if needed
+        }; // <-- Closing curly brace added here
+        setUser(loggedUser); // Set user context
+        navigate("/"); // Navigate to the home page
       } else {
         setError("User data not found"); // Set an error if user data not found
       }
@@ -49,7 +43,6 @@ const Login = () => {
       setError("Login failed. Please check your credentials and try again."); // Display the specific error message
     }
   };
-  
 
   return (
     <div className="max-w-[400px] w-full m-auto p-4">

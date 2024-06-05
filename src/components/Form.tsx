@@ -12,17 +12,17 @@ const Form = ({ createProject, name, setName, description, setDescription }: For
   return (
     <form
       onSubmit={createProject}
-      className="flex justify-between bg-violet-300 p-4 rounded-lg items-center"
+      className="flex justify-between bg-violet-300 p-4 rounded-lg items-center dark:bg-gray-800"
     >
       <input
         placeholder="Name"
-        className="w-full text-xl rounded-lg p-[3px] mx-1"
+        className="w-full text-xl rounded-lg p-[3px] mx-1 dark:bg-gray-800"
         onChange={(e) => setName(e.target.value)}
         value={name}
       />
       <input
         placeholder="Description"
-        className="w-full text-xl rounded-lg p-[3px] mx-1"
+        className="w-full text-xl rounded-lg p-[3px] mx-1 dark:bg-gray-800"
         onChange={(e) => setDescription(e.target.value)}
         value={description}
       />

@@ -4,17 +4,13 @@ import { useUser } from "../context/UserContext";
 const Details = () => {
   const { user } = useUser();
 
-  if (!user) {
-    return <div>No user details available</div>;
-  }
-
   return (
-    <div>
-      <h2>User Details</h2>
-      <p>Name: {user.name}</p>
-      <p>Surname: {user.surname}</p>
-      <p>Email: {user.email}</p>
-      <p>UID: {user.id}</p>
+    <div className="p-4 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-200 rounded-lg shadow-md">
+      <h2 className="text-2xl font-bold mb-4">User Details</h2>
+      <p><strong>Name:</strong> {user?.name}</p>
+      <p><strong>Surname:</strong> {user?.surname}</p>
+      <p><strong>Email:</strong> {user?.email}</p>
+      <p><strong>UID:</strong> {user?.id}</p>
     </div>
   );
 };

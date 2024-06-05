@@ -58,26 +58,26 @@ const UserStoryForm = () => {
   };
 
   return (
-    <div className="max-w-2xl mx-auto p-4 bg-white rounded-lg shadow-md">
+    <div className="max-w-2xl mx-auto p-4 bg-white rounded-lg shadow-md dark:bg-gray-900">
       <h2 className="text-2xl font-bold mb-4">{id ? 'Edit User Story' : 'Create User Story'}</h2>
-      <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
+      <form onSubmit={handleSubmit} className="flex flex-col space-y-4 ">
         <input
           type="text"
           placeholder="Name"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          className="p-2 border rounded-md"
+          className="p-2 border rounded-md dark:bg-gray-900"
         />
         <textarea
           placeholder="Description"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
-          className="p-2 border rounded-md"
+          className="p-2 border rounded-md dark:bg-gray-900"
         />
         <select
           value={priority}
           onChange={(e) => setPriority(e.target.value as Priority)}
-          className="p-2 border rounded-md"
+          className="p-2 border rounded-md dark:bg-gray-900"
         >
           <option value={Priority.Low}>Low</option>
           <option value={Priority.Medium}>Medium</option>
@@ -86,7 +86,7 @@ const UserStoryForm = () => {
         <select
           value={state}
           onChange={(e) => setState(e.target.value as State)}
-          className="p-2 border rounded-md"
+          className="p-2 border rounded-md dark:bg-gray-900"
         >
           <option value={State.Todo}>To Do</option>
           <option value={State.Doing}>Doing</option>

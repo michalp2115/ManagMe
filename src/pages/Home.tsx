@@ -79,10 +79,10 @@ const Home = () => {
       <table className="w-full border-collapse border border-gray-300 mt-4">
         <thead>
           <tr className="bg-gray-200">
-            <th className="border border-gray-300 px-4 py-2">ID</th>
-            <th className="border border-gray-300 px-4 py-2">Name</th>
-            <th className="border border-gray-300 px-4 py-2">Description</th>
-            <th className="border border-gray-300 px-4 py-2">Actions</th>
+            <th className="border border-gray-300 px-4 py-2 dark:text-gray-300 dark:bg-gray-800">ID</th>
+            <th className="border border-gray-300 px-4 py-2 dark:text-gray-300 dark:bg-gray-800">Name</th>
+            <th className="border border-gray-300 px-4 py-2 dark:text-gray-300 dark:bg-gray-800">Description</th>
+            <th className="border border-gray-300 px-4 py-2 dark:text-gray-300 dark:bg-gray-800">Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -96,7 +96,7 @@ const Home = () => {
           ))}
         </tbody>
       </table>
-      <p className="text-center font-bold text-stone-800 mt-4">
+      <p className="text-center font-bold text-stone-800 mt-4 dark:text-white">
         You have {incompleteProjectsCount} things to complete
       </p>
     </div>

@@ -28,3 +28,18 @@ export type UserStoryType = {
     ownerId: string;
     type: string;
 }
+
+export type TaskType = {
+    id: string;
+    name: string;
+    description: string;
+    priority: 'low' | 'medium' | 'high';
+    userStoryId: string;
+    expectedTime: number; // in hours
+    state: 'todo' | 'doing' | 'done';
+    addDate: string;
+    startDate?: string;
+    endDate?: string;
+    userId?: string;
+  }
+  

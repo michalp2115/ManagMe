@@ -8,6 +8,7 @@ import Register from '../pages/Register';
 import UserStoryList from '../pages/UserStoryList';
 import UserStoryForm from '../pages/UserStoryForm';
 import ProjectUserStories from '../pages/ProjectUserStories';
+import UserStoryTasks from '../pages/UserStoryTask';
 
 const AppRoutes = () => {
   return (
@@ -20,6 +21,7 @@ const AppRoutes = () => {
       <Route path="/projects/:projectId/user-stories" element={<ProjectUserStories />} />
       <Route path="/projects/:projectId/user-stories/new" element={<UserStoryForm />} />
       <Route path="/projects/:projectId/user-stories/edit/:id" element={<UserStoryForm />} />
+      <Route path="/projects/:projectId/user-stories/:userStoryId/tasks" element={<UserStoryTasks />} />
     </Routes>
   );
 };

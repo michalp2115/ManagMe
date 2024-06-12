@@ -25,7 +25,7 @@ const Projects = ({ projects, deleteProject, toggleStatus }: ProjectProps) => {
   };
 
   const handleEdit = () => {
-    navigate(`/edit/${projects.id}`);
+    navigate(`/edit-project/${projects.id}`);
   };
 
   const handleGoInto = () => {

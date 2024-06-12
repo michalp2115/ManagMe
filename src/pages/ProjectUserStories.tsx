@@ -1,13 +1,13 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useUserStory } from '../context/UserStoryContext';
-import DeleteIcon from "@mui/icons-material/Delete";
-import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
+import { Forward } from '@mui/icons-material';
 
 const ProjectUserStories = () => {
-  const { projectId } = useParams();
+  const { projectId } = useParams<{ projectId: string }>();
   const { userStories, deleteUserStory } = useUserStory();
-
   const projectUserStories = userStories.filter(story => story.projectId === projectId);
 
   return (
@@ -16,7 +16,7 @@ const ProjectUserStories = () => {
       <div className="mb-4">
         <Link
           to={`/projects/${projectId}/user-stories/new`}
-          className="bg-blue-500 text-white px-4 py-2 rounded-md dark:bg-gray-900"
+          className="bg-blue-500 text-white px-4 py-2 rounded-md dark:bg-white dark:text-black dark:font-bold"
         >
           Create New User Story
         </Link>
@@ -40,8 +40,14 @@ const ProjectUserStories = () => {
               <td className="border px-4 py-2">{story.state}</td>
               <td className="border px-4 py-2">
                 <Link
+                  to={`/projects/${projectId}/user-stories/${story.id}/tasks`}
+                  className="mr-2 text-blue-500 dark:text-white"
+                >
+                  GO INTO <Forward/>
+                </Link>
+                <Link
                   to={`/projects/${projectId}/user-stories/edit/${story.id}`}
-                  className="mr-2 text-blue-500 hover:text-blue-700"
+                  className="mr-2 text-blue-500 hover:text-blue-700 dark:text-white"
                 >
                   <EditIcon />
                 </Link>

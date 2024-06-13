@@ -1,5 +1,6 @@
+// src/context/UserContext.tsx
 import React, { createContext, useContext, useState, useEffect, ReactNode } from "react";
-import { db } from "../db/Firebase"; 
+import { db } from "../db/Firebase";
 import { collection, getDocs } from "firebase/firestore";
 
 interface UserType {
@@ -12,8 +13,8 @@ interface UserType {
 interface UserContextType {
   user: UserType | null;
   setUser: (user: UserType | null) => void;
-  users: UserType[]; 
-  fetchUsers: () => Promise<void>; 
+  users: UserType[];
+  fetchUsers: () => Promise<void>;
 }
 
 const UserContext = createContext<UserContextType | undefined>(undefined);

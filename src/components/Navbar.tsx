@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useUser } from "../context/UserContext";
+import { useNotifications } from "../context/NotificationsContext";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { SunIcon, MoonIcon } from "@heroicons/react/16/solid";
+import NotificationsIcon from '@mui/icons-material/Notifications';
 
 const Navbar = () => {
   const { user, setUser } = useUser();
+  const { notifications } = useNotifications();
+  const unreadCount = notifications.filter(notification => !notification.isRead).length;
   const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
 
   useEffect(() => {
@@ -40,6 +44,14 @@ const Navbar = () => {
         </button>
         {user ? (
           <div className="flex items-center space-x-4">
+            <Link to="/notifications" className="relative cursor-pointer">
+              <NotificationsIcon className="h-6 w-6" />
+              {unreadCount > 0 && (
+                <span className="absolute top-0 right-0 bg-red-500 text-white rounded-full h-5 w-5 flex items-center justify-center text-sm">
+                  {unreadCount}
+                </span>
+              )}
+            </Link>
             <span>
               Welcome, {user.name} {user.surname}
             </span>

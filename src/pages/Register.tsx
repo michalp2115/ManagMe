@@ -53,28 +53,28 @@ const Register = () => {
         <input
           type="text"
           placeholder="Name"
-          className="w-full text-xl rounded-lg p-2"
+          className="w-full text-xl rounded-lg p-2 dark:text-black"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
         <input
           type="text"
           placeholder="Surname"
-          className="w-full text-xl rounded-lg p-2"
+          className="w-full text-xl rounded-lg p-2 dark:text-black"
           value={surname}
           onChange={(e) => setSurname(e.target.value)}
         />
         <input
           type="email"
           placeholder="Email"
-          className="w-full text-xl rounded-lg p-2"
+          className="w-full text-xl rounded-lg p-2 dark:text-black"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
         <input
           type="password"
           placeholder="Password"
-          className="w-full text-xl rounded-lg p-2"
+          className="w-full text-xl rounded-lg p-2 dark:text-black"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />

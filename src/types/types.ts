@@ -35,7 +35,7 @@ export type TaskType = {
     description: string;
     priority: 'low' | 'medium' | 'high';
     userStoryId: string;
-    expectedTime: number; // in hours
+    expectedTime: number; 
     state: 'todo' | 'doing' | 'done';
     addDate: string;
     startDate?: string;

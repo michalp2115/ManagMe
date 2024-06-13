@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useUserStory } from '../context/UserStoryContext';
-import { useUser } from '../context/UserContext'; // Import the user context
+import { useUser } from '../context/UserContext'; 
 import Priority from '../enums/Priority';
 import State from '../enums/State';
 import { UserStoryType } from '../types/types';
@@ -13,7 +13,7 @@ const UserStoryForm = () => {
   const [priority, setPriority] = useState(Priority.Low);
   const [state, setState] = useState(State.Todo);
   const { userStories, addUserStory, updateUserStory } = useUserStory();
-  const { user } = useUser(); // Get the logged-in user
+  const { user } = useUser(); 
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -43,9 +43,9 @@ const UserStoryForm = () => {
       state,
       createdDate: Date.now(),
       projectId: projectId || '',
-      ownerId: user.id, // Set the owner ID to the logged-in user's ID
+      ownerId: user.id, 
       type: 'userStory',
-      projectName: '', // This can be set or left empty as needed
+      projectName: '',
     };
 
     if (id) {

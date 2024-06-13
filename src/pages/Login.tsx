@@ -1,8 +1,9 @@
+// src/pages/Login.tsx
 import React, { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth, db } from "../db/Firebase";
+import { auth, db, provider, signInWithPopup } from "../db/Firebase";
 import { useNavigate } from "react-router-dom";
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 import { useUser } from "../context/UserContext";
 
 const Login = () => {
@@ -14,13 +15,12 @@ const Login = () => {
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setError(null); // Reset error before attempting login
+    setError(null); 
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
-      console.log("Logged in user UID:", user.uid); // Log UID of the logged-in user
+      console.log("Logged in user UID:", user.uid); 
   
-      // Fetch user information from Firestore
       const userDocRef = doc(db, "users", user.uid);
       const userSnap = await getDoc(userDocRef);
       console.log("User snapshot:", userSnap.exists() ? userSnap.data() : "User not found");
@@ -31,16 +31,56 @@ const Login = () => {
           id: user.uid,
           name: userData.name,
           surname: userData.surname,
-          email: userData.email // Make sure to include email if needed
-        }; // <-- Closing curly brace added here
-        setUser(loggedUser); // Set user context
-        navigate("/"); // Navigate to the home page
+          email: userData.email 
+        }; 
+        setUser(loggedUser); 
+        navigate("/"); 
       } else {
-        setError("User data not found"); // Set an error if user data not found
+        setError("User data not found"); 
       }
     } catch (error: any) {
       console.error("Error logging in:", error.code, error.message);
-      setError("Login failed. Please check your credentials and try again."); // Display the specific error message
+      setError("Login failed. Please check your credentials and try again."); 
+    }
+  };
+
+  const handleGoogleLogin = async () => {
+    setError(null);
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+      console.log("Logged in user UID:", user.uid);
+
+      const userDocRef = doc(db, "users", user.uid);
+      const userSnap = await getDoc(userDocRef);
+
+      if (userSnap.exists()) {
+        const userData = userSnap.data();
+        const loggedUser = {
+          id: user.uid,
+          name: userData.name,
+          surname: userData.surname,
+          email: userData.email
+        };
+        setUser(loggedUser);
+        navigate("/");
+      } else {
+        await setDoc(userDocRef, {
+          name: user.displayName,
+          email: user.email,
+          surname: ""
+        });
+        setUser({
+          id: user.uid,
+          name: user.displayName || "",
+          surname: "",
+          email: user.email || ""
+        });
+        navigate("/");
+      }
+    } catch (error: any) {
+      console.error("Error logging in with Google:", error.code, error.message);
+      setError("Google login failed. Please try again.");
     }
   };
 
@@ -67,6 +107,14 @@ const Login = () => {
           Login
         </button>
       </form>
+      <div className="mt-4">
+        <button
+          onClick={handleGoogleLogin}
+          className="bg-red-500 text-white p-2 rounded-lg w-full"
+        >
+          Login with Google
+        </button>
+      </div>
     </div>
   );
 };
